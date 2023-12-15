@@ -1,15 +1,16 @@
 ﻿using System.Reflection;
 using System.Text.RegularExpressions;
+using AdventOfCode.Helpers.Grid;
 using static System.Console;
 
 namespace AdventOfCode.Helpers;
 
-public abstract partial class Puzzle
+public abstract partial class Day
 {
     private readonly string day;
     private readonly string year;
 
-    protected Puzzle()
+    protected Day()
     {
         var assemblyName = Assembly.GetAssembly(GetType())!.GetName().Name!;
         var className = GetType().Name;
@@ -18,9 +19,12 @@ public abstract partial class Puzzle
         day = ClassNamePattern().Match(className).Groups["day"].Value;
 
         Input = File.ReadAllLines($"Inputs/{year}-{day}.txt");
+        Grid = Input.Select(line => line.ToCharArray()).ToArray();
     }
 
     protected string[] Input { get; init; }
+
+    protected char[][] Grid { get; init; }
 
     public void Run()
     {
@@ -45,6 +49,22 @@ public abstract partial class Puzzle
     protected abstract object PartOne();
 
     protected abstract object? PartTwo();
+
+    protected Cell Cell(int i, int j)
+    {
+        return new Cell(Grid, i, j);
+    }
+
+    protected IEnumerable<Cell> Range(int minI, int maxI, int minJ, int maxJ)
+    {
+        for (var i = minI; i <= maxI; i++)
+        {
+            for (var j = minJ; j <= maxJ; j++)
+            {
+                yield return Cell(i, j);
+            }
+        }
+    }
 
     [GeneratedRegex(@"^AdventOfCode\.Year(?<year>\d{4})$")]
     private static partial Regex AssemblyNamePattern();

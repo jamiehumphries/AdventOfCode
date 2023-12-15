@@ -2,7 +2,7 @@
 
 namespace AdventOfCode.Year2023;
 
-public class Day : Puzzle
+public class Day00 : Day
 {
     protected override object PartOne()
     {
