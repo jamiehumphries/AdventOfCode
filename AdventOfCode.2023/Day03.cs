@@ -18,7 +18,7 @@ public partial class Day03 : Day
                 .Where(match =>
                 {
                     var j = match.Index;
-                    var cells = Range(i, i, j, j + match.Length - 1).ToList();
+                    var cells = CellRange(i, i, j, j + match.Length - 1).ToList();
                     var neighbours = cells.SelectMany(cell => cell.Neighbours()).Except(cells).ToHashSet();
 
                     var gears = neighbours.Where(cell => cell.Value == '*');

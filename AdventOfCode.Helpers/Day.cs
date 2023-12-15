@@ -55,7 +55,7 @@ public abstract partial class Day
         return new Cell(Grid, i, j);
     }
 
-    protected IEnumerable<Cell> Range(int minI, int maxI, int minJ, int maxJ)
+    protected IEnumerable<Cell> CellRange(int minI, int maxI, int minJ, int maxJ)
     {
         for (var i = minI; i <= maxI; i++)
         {
