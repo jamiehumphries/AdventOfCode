@@ -1,1 +1,4 @@
-﻿Console.WriteLine("Merry Christmas, World!");
+﻿using AdventOfCode.Year2023;
+
+var puzzle = new Day01();
+puzzle.Run();
