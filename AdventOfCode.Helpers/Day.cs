@@ -22,9 +22,9 @@ public abstract partial class Day
         Grid = Input.Select(line => line.ToCharArray()).ToArray();
     }
 
-    protected string[] Input { get; init; }
+    protected string[] Input { get; }
 
-    protected char[][] Grid { get; init; }
+    protected char[][] Grid { get; }
 
     public void Run()
     {

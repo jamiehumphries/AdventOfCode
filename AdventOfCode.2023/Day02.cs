@@ -1,4 +1,5 @@
 ﻿using AdventOfCode.Helpers;
+using AdventOfCode.Helpers.Parsing;
 
 namespace AdventOfCode.Year2023;
 
@@ -21,21 +22,15 @@ public class Day02 : Day
         return games.Sum(game => game.Power);
     }
 
-    private class Game
+    private class Game : LineWithId
     {
         private readonly IEnumerable<Round> rounds;
 
-        public Game(string line)
+        public Game(string line) : base("Game", line)
         {
-            var split = line.Split(": ");
-
-            Id = int.Parse(split[0]["Game ".Length..]);
-
-            var game = split[1];
-            rounds = game.Split("; ").Select(round => new Round(round));
+            rounds = Data.Split("; ").Select(round => new Round(round));
         }
 
-        public int Id { get; }
         public int Power => MaxRed * MaxGreen * MaxBlue;
 
         private int MaxRed => MaxCubes("red");

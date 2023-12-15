@@ -1,4 +1,4 @@
 ﻿using AdventOfCode.Year2023;
 
-var puzzle = new Day03();
+var puzzle = new Day04();
 puzzle.Run();
